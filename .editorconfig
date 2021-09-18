@@ -1,0 +1,13 @@
+root = true
+
+[*.{csproj,csproj.user}]
+indent_size = 2
+indent_style = space
+tab_width = 2
+
+[*.cs]
+
+dotnet_diagnostic.IDE0003.severity = none
+dotnet_diagnostic.CS1591.severity = none
+dotnet_diagnostic.SA1600.severity = none
+dotnet_diagnostic.SA1601.severity = none

@@ -1,0 +1,88 @@
+﻿<Window x:Class="SaveEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="Until You Fall Save Editor" Height="450" Width="800"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing" Icon="icon.ico">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}" x:Key="DisableIfErrorOrNoSelection">
+            <Setter Property="IsEnabled" Value="False"/>
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding ElementName=saveFileListView, Path=SelectedItems.Count}" Value="1"/>
+                        <Condition Binding="{Binding ElementName=encryptionKeyTextBox, Path=(Validation.HasError)}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=encryptionIVTextBox, Path=(Validation.HasError)}" Value="False"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="IsEnabled" Value="True"/>
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type TextBox}" x:Key="ShowValidationErrorInToolTip">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)/ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Label Content="Data Folder" ToolTip="Usually C:\Users\&lt;username&gt;\AppData\LocalLow\Schell Games\UntilYouFall" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="118"/>
+        <TextBox Name="dataFolderTextBox" Margin="133,14,140,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource ShowValidationErrorInToolTip}" Text="{Binding PersistentDataPath}"/>
+
+        <Label Content="Encryption Key" ToolTip="AES Key" Margin="10,41,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="118"/>
+        <TextBox Name="encryptionKeyTextBox" Margin="133,45,140,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource ShowValidationErrorInToolTip}" Text="{Binding EncryptionKey}"/>
+
+        <Label Content="Encryption IV" ToolTip="AES Initialization Vector" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="118"/>
+        <TextBox Name="encryptionIVTextBox" Margin="133,76,140,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource ShowValidationErrorInToolTip}" Text="{Binding EncryptionIV}"/>
+
+        <ListView Name="saveFileListView" Margin="10,103,10,35" ItemsSource="{Binding SaveFiles}" SelectedItem="{Binding SelectedFile}">
+            <ListView.Resources>
+                <Style TargetType="GridViewColumnHeader">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </ListView.Resources>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Content="_Export..." HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Click="ExportButton_Click" Width="60" Style="{StaticResource DisableIfErrorOrNoSelection}"/>
+        <Button Content="_Import..." HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="75,0,0,10" Click="ImportButton_Click" Width="60" Style="{StaticResource DisableIfErrorOrNoSelection}"/>
+        <CheckBox Content="Deserialize Values" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="140,0,0,12" IsChecked="{Binding DeserializeValues}" ToolTip="Values are stored as strings even if they are objects. Checking this box deserializes these objects."/>
+
+        <Button Content="_Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Click="RefreshButton_Click" Width="60">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=dataFolderTextBox, Path=(Validation.HasError)}" Value="False">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button Content="_Browse..." Margin="0,13,65,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="70" Click="BrowseButton_Click"/>
+        <Button Content="Rese_t" Margin="0,13,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="50" Click="ResetButton_Click"/>
+        <Button Content="Import _Key &amp; IV..." HorizontalAlignment="Right" Margin="0,59,10,0" VerticalAlignment="Top" Width="125" Click="ImportKeys_Click"/>
+    </Grid>
+</Window>

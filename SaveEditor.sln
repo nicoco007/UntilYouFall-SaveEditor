@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaveEditor", "SaveEditor\SaveEditor.csproj", "{38122149-8758-435C-9BCE-BF8ECAF20FD6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{135F6D21-FD1E-4394-90DB-4BDCF9B03631}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AesKeyExtractorPlugin", "AesKeyExtractorPlugin\AesKeyExtractorPlugin.csproj", "{58416567-A3A5-4E57-9533-43592EBFFCC2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_BepInEx|Any CPU = Debug_BepInEx|Any CPU
+		Debug_MelonLoader|Any CPU = Debug_MelonLoader|Any CPU
+		Release_BepInEx|Any CPU = Release_BepInEx|Any CPU
+		Release_MelonLoader|Any CPU = Release_MelonLoader|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38122149-8758-435C-9BCE-BF8ECAF20FD6}.Debug_BepInEx|Any CPU.ActiveCfg = Debug|Any CPU
+		{38122149-8758-435C-9BCE-BF8ECAF20FD6}.Debug_BepInEx|Any CPU.Build.0 = Debug|Any CPU
+		{38122149-8758-435C-9BCE-BF8ECAF20FD6}.Debug_MelonLoader|Any CPU.ActiveCfg = Debug|Any CPU
+		{38122149-8758-435C-9BCE-BF8ECAF20FD6}.Debug_MelonLoader|Any CPU.Build.0 = Debug|Any CPU
+		{38122149-8758-435C-9BCE-BF8ECAF20FD6}.Release_BepInEx|Any CPU.ActiveCfg = Release|Any CPU
+		{38122149-8758-435C-9BCE-BF8ECAF20FD6}.Release_BepInEx|Any CPU.Build.0 = Release|Any CPU
+		{38122149-8758-435C-9BCE-BF8ECAF20FD6}.Release_MelonLoader|Any CPU.ActiveCfg = Release|Any CPU
+		{38122149-8758-435C-9BCE-BF8ECAF20FD6}.Release_MelonLoader|Any CPU.Build.0 = Release|Any CPU
+		{58416567-A3A5-4E57-9533-43592EBFFCC2}.Debug_BepInEx|Any CPU.ActiveCfg = Debug_BepInEx|Any CPU
+		{58416567-A3A5-4E57-9533-43592EBFFCC2}.Debug_BepInEx|Any CPU.Build.0 = Debug_BepInEx|Any CPU
+		{58416567-A3A5-4E57-9533-43592EBFFCC2}.Debug_MelonLoader|Any CPU.ActiveCfg = Debug_MelonLoader|Any CPU
+		{58416567-A3A5-4E57-9533-43592EBFFCC2}.Debug_MelonLoader|Any CPU.Build.0 = Debug_MelonLoader|Any CPU
+		{58416567-A3A5-4E57-9533-43592EBFFCC2}.Release_BepInEx|Any CPU.ActiveCfg = Release_BepInEx|Any CPU
+		{58416567-A3A5-4E57-9533-43592EBFFCC2}.Release_BepInEx|Any CPU.Build.0 = Release_BepInEx|Any CPU
+		{58416567-A3A5-4E57-9533-43592EBFFCC2}.Release_MelonLoader|Any CPU.ActiveCfg = Release_MelonLoader|Any CPU
+		{58416567-A3A5-4E57-9533-43592EBFFCC2}.Release_MelonLoader|Any CPU.Build.0 = Release_MelonLoader|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8409645C-49D2-4A0D-854D-EF815D3FC314}
+	EndGlobalSection
+EndGlobal
